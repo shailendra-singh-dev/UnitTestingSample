@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">UnitTestingSample</string>
+    <string name="action_settings">Settings</string>
+    <string name="email_label">Email</string>
+    <string name="email_hint">Enter your email id</string>
+    <string name="save">Save</string>
+    <string name="password_hint">Enter you password</string>
+</resources>
