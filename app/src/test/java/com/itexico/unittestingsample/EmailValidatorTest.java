@@ -2,13 +2,13 @@ package com.itexico.unittestingsample;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ * Created by iTexico Developer on 8/8/2016.
  */
-public class ExampleUnitTest {
-
+public class EmailValidatorTest {
     @Test
     public void emailValidator_CorrectEmailSimple_ReturnsTrue() {
         assertTrue(EmailValidator.isValidEmail("name@email.com"));
@@ -43,6 +43,4 @@ public class ExampleUnitTest {
     public void emailValidator_NullEmail_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail(null));
     }
-
-
 }

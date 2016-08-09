@@ -36,7 +36,7 @@ import static org.mockito.Mockito.spy;
  * Created by iTexico Developer on 8/5/2016.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class MockitoUniTest {
+public class MockitoUnitTest {
 
     @Mock
     private SharedPreferences mSharedPreferences;

@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = MainActivity.class.getSimpleName();
     // The validator for the email input field.
     private EmailValidator mEmailValidator;
+    private PasswordValidator mPasswordValidator;
     private EditText mEmailText;
     // The helper that manages writing to SharedPreferences.
     private SharedPreferencesHelper mSharedPreferencesHelper;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Setup field validators.
         mEmailValidator = new EmailValidator();
         mEmailText.addTextChangedListener(mEmailValidator);
+
+        mPasswordValidator= new PasswordValidator();
+        mPasswordText.addTextChangedListener(mPasswordValidator);
 
         final Button save = (Button) findViewById(R.id.saveButton);
         save.setOnClickListener(this);
@@ -89,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (!mEmailValidator.isValid()) {
             mEmailText.setError("Invalid email");
             Log.w(TAG, "Not saving personal information: Invalid email");
+            return;
+        }
+        if (!mPasswordValidator.isValid()) {
+            mPasswordText.setError("Invalid Password. Minimum password length is 8.It can have numeral,alphabates.");
+            Log.w(TAG, "Not saving personal information: Invalid Password");
             return;
         }
 
