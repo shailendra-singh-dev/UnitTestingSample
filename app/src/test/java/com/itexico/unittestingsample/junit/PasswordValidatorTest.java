@@ -1,4 +1,6 @@
-package com.itexico.unittestingsample;
+package com.itexico.unittestingsample.junit;
+
+import com.itexico.unittestingsample.PasswordValidator;
 
 import org.junit.Rule;
 import org.junit.Test;

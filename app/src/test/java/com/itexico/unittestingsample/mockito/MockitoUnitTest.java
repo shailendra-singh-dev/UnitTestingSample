@@ -1,4 +1,4 @@
-package com.itexico.unittestingsample;
+package com.itexico.unittestingsample.mockito;
 
 import android.content.SharedPreferences;
 

@@ -1,4 +1,4 @@
-package com.itexico.unittestingsample;
+package com.itexico.unittestingsample.junit;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;

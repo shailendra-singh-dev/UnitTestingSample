@@ -1,5 +1,9 @@
-package com.itexico.unittestingsample.mocktest;
+package com.itexico.unittestingsample.powermock;
 
+
+import com.itexico.unittestingsample.mocktest.Service;
+import com.itexico.unittestingsample.mocktest.ServiceListener;
+import com.itexico.unittestingsample.mocktest.SomeSystem;
 
 import org.junit.Before;
 import org.junit.Test;

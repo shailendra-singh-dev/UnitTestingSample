@@ -1,5 +1,6 @@
 package com.itexico.unittestingsample;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -12,9 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = LoginActivity.class.getSimpleName();
     // The validator for the email input field.
     private EmailValidator mEmailValidator;
     private PasswordValidator mPasswordValidator;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
+        setContentView(R.layout.activity_login);
 
         mEmailText = (EditText) findViewById(R.id.emailInput);
         mPasswordText = (EditText) findViewById(R.id.passwordInput);
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEmailValidator = new EmailValidator();
         mEmailText.addTextChangedListener(mEmailValidator);
 
-        mPasswordValidator= new PasswordValidator();
+        mPasswordValidator = new PasswordValidator();
         mPasswordText.addTextChangedListener(mPasswordValidator);
 
         final Button save = (Button) findViewById(R.id.saveButton);
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * Called when the "Save" button is clicked.
      */
     public void onSaveClick() {
+        //UnComment for LoginActivityTest secondActivityStartedOnClick
+//        Intent intent = new Intent(this, WelcomeActivity.class);
+//        startActivity(intent);
+
         // Don't save if the fields do not validate.
         if (!mEmailValidator.isValid()) {
             mEmailText.setError("Invalid email");
@@ -117,5 +122,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             Log.e(TAG, "Failed to write personal information to SharedPreferences");
         }
+        if (isSuccess) {
+            Intent intent = new Intent(this, WelcomeActivity.class);
+            startActivity(intent);
+        }
     }
+
 }

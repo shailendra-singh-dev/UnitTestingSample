@@ -7,8 +7,8 @@ import android.content.SharedPreferences;
  */
 public class SharedPreferencesHelper {
     // Keys for saving values in SharedPreferences.
-    static final String KEY_EMAIL = "key_email";
-    static final String KEY_PASSWORD = "key_password";
+    public static final String KEY_EMAIL = "key_email";
+    public static final String KEY_PASSWORD = "key_password";
 
     // The injected SharedPreferences implementation to use for persistence.
     private final SharedPreferences mSharedPreferences;
@@ -28,9 +28,9 @@ public class SharedPreferencesHelper {
      *
      * @param sharedPreferenceEntry contains data to save to {@link SharedPreferences}.
      * @return @{code true} if writing to {@link SharedPreferences} succeeded. @{code false}
-     *         otherwise.
+     * otherwise.
      */
-    public boolean savePersonalInfo(SharedPreferenceEntry sharedPreferenceEntry){
+    public boolean savePersonalInfo(SharedPreferenceEntry sharedPreferenceEntry) {
         // Start a SharedPreferences transaction.
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(KEY_EMAIL, sharedPreferenceEntry.getEmail());
