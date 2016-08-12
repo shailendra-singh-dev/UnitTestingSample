@@ -2,7 +2,9 @@ package com.itexico.unittestingsample.junit;
 
 import com.itexico.unittestingsample.EmailValidator;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,6 +12,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by iTexico Developer on 8/8/2016.
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmailValidatorTest {
     @Test
     public void emailValidator_CorrectEmailSimple_ReturnsTrue() {
