@@ -38,6 +38,6 @@ public class RobolectricGradleTestRunner extends RobolectricTestRunner {
     private String getModuleRootPath(Config config) {
         String moduleRoot = config.constants().getResource("").toString().replace("file:", "");
         return moduleRoot.substring(0, moduleRoot.indexOf("/build"));
-
     }
+
 }

@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG,"onCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -55,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void populateUi() {
+        Log.i(TAG,"populateUi()");
         SharedPreferenceEntry sharedPreferenceEntry;
         sharedPreferenceEntry = mSharedPreferencesHelper.getPersonalInfo();
         mEmailText.setText(sharedPreferenceEntry.getEmail());
@@ -96,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * Called when the "Save" button is clicked.
      */
     public void onSaveClick() {
+        Log.i(TAG,"onSaveClick()");
         //UnComment for LoginActivityTest secondActivityStartedOnClick
 //        Intent intent = new Intent(this, WelcomeActivity.class);
 //        startActivity(intent);
@@ -137,12 +140,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onPause() {
+        Log.i(TAG,"onPause()");
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
     }
 
     @Override
     protected void onResume() {
+        Log.i(TAG,"onResume()");
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver, new IntentFilter("com.itexico.unittestingsample.intent.LOCAL_BROADCAST"));
         LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("com.itexico.unittestingsample.intent.LOCAL_BROADCAST"));
