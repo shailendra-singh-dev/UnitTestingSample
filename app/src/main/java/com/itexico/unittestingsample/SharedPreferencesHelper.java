@@ -53,4 +53,6 @@ public class SharedPreferencesHelper {
         // Create and fill a SharedPreferenceEntry model object.
         return new SharedPreferenceEntry(email, password);
     }
+
+
 }

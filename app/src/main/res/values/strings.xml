@@ -5,4 +5,5 @@
     <string name="email_hint">Enter your email id</string>
     <string name="save">Save</string>
     <string name="password_hint">Enter you password</string>
+
 </resources>

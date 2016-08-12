@@ -1,9 +1,13 @@
 package com.itexico.unittestingsample;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -12,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.itexico.unittestingsample.service.RobolectricIntentService;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -128,4 +134,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver, new IntentFilter("com.itexico.unittestingsample.intent.LOCAL_BROADCAST"));
+        LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("com.itexico.unittestingsample.intent.LOCAL_BROADCAST"));
+    }
+
+    final private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "onReceive called");
+            Toast.makeText(context, "BroadcastReceiver#onReceive Toast Called", Toast.LENGTH_SHORT).show();
+
+            Intent serviceIntent = new Intent(LoginActivity.this, RobolectricIntentService.class);
+            serviceIntent.putExtra("ACTION","action_data");
+            getApplicationContext().startService(serviceIntent);
+        }
+    };
 }

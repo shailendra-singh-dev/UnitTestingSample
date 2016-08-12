@@ -16,7 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WelcomeActivity"/>
-    </application>
+        <activity android:name=".WelcomeActivity" />
 
+        <receiver android:name=".receiver.RobolectricBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.itexico.unittestingsample.intent.action.UNIT_TEST" />
+                <category android:name="com.itexico.unittestingsample.intent.category.UNIT_TEST" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".service.RobolectricIntentService" />
+    </application>
 </manifest>
