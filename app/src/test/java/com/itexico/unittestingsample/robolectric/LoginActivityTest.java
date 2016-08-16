@@ -39,6 +39,7 @@ import static junit.framework.Assert.assertTrue;
 public class LoginActivityTest {
 
     private LoginActivity loginActivity;
+    //ActivityController is a Robolectric class that drives the Activity lifecycle
     private ActivityController activityController;
 
     // @Before => JUnit 4 annotation that specifies this method should run before each test is run
@@ -46,17 +47,21 @@ public class LoginActivityTest {
     @Before
     public void setup() {
         // Convenience method to run LoginActivity through the Activity Lifecycle methods:
-        // onCreate(...) => onStart() => onPostCreate(...) => onResume()
+        // onCreate(...) => onStart() => onPostCreate(...) => onResume().
+        // Call the "buildActivity" method so we get an ActivityController which we can use
+        // to have more control over the activity lifecycle
         activityController = Robolectric.buildActivity(LoginActivity.class);
         createWithIntent("setupextra");
     }
 
+    // @After => JUnit 4 annotation that specifies this method should be run after each test
     @After
     public void tearDown() {
         loginActivity = null;
         activityController = null;
     }
 
+    // Activity creation that allows intent extras to be passed in
     private void createWithIntent(String intentExtra) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Bundle extras = new Bundle();
@@ -70,9 +75,10 @@ public class LoginActivityTest {
                 .get();
     }
 
+    // Test that simulates the full lifecycle of an activity
     @Test
     public void createsAndDestroysActivity() {
-        activityController.destroy();
+        // This test is done by @Before setup() and  @After tearDown();
         // Assertions go here
     }
 
