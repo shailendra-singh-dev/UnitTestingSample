@@ -36,7 +36,7 @@ import static junit.framework.Assert.assertTrue;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
-public class LoginActivityTest {
+public class ActivityTest {
 
     private LoginActivity loginActivity;
     //ActivityController is a Robolectric class that drives the Activity lifecycle

@@ -100,8 +100,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onSaveClick() {
         Log.i(TAG,"onSaveClick()");
         //UnComment for LoginActivityTest secondActivityStartedOnClick
-//        Intent intent = new Intent(this, WelcomeActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
 
         // Don't save if the fields do not validate.
         if (!mEmailValidator.isValid()) {
@@ -131,10 +131,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             Log.e(TAG, "Failed to write personal information to SharedPreferences");
         }
-        if (isSuccess) {
-            Intent intent = new Intent(this, WelcomeActivity.class);
-            startActivity(intent);
-        }
+//        if (isSuccess) {
+//            Intent intent = new Intent(this, WelcomeActivity.class);
+//            startActivity(intent);
+//        }
     }
 
 

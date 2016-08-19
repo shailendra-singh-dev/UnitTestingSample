@@ -24,19 +24,18 @@ public class PasswordValidatorTest {
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
-    @Parameterized.Parameter
-    public String mPassword;
-
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
-    public PasswordValidatorTest(final String password) {
-        mPassword = password;
-    }
+    @Parameterized.Parameter
+    public String mPassword;
 
     @Test(expected = IllegalArgumentException.class)
     public void passwordValidator_MiniumLength() {
-        PasswordValidator.isValidPassword("test");
+        boolean isPassed =PasswordValidator.isValidPassword("test");
+        if(!isPassed){
+            throw new IllegalArgumentException();
+        }
     }
 
     public PasswordValidatorTest(){
@@ -49,15 +48,13 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    public void passwordLength() {
-        assertTrue("Result", PasswordValidator.isValidPassword(mPassword));
-    }
-
-    @Test
     public void throwsIllegalArgumentExceptionIfLengthIsLess() {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Minimum Length expected is 10.");
-        PasswordValidator.isValidPassword("tempPassword@1234");
+        boolean isPassed =PasswordValidator.isValidPassword("tempPassword@1234");
+        if(!isPassed){
+            throw new IllegalArgumentException("Minimum Length expected is 10.");
+        }
     }
 
     @Test

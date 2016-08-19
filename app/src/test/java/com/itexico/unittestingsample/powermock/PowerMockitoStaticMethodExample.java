@@ -2,7 +2,7 @@ package com.itexico.unittestingsample.powermock;
 
 import com.itexico.unittestingsample.mocktest.Service;
 import com.itexico.unittestingsample.mocktest.ServiceListener;
-import com.itexico.unittestingsample.mocktest.SomeSystem;
+import com.itexico.unittestingsample.mocktest.SystemUnderTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 public class PowerMockitoStaticMethodExample {
 	private Service service;
-	private SomeSystem system;
+	private SystemUnderTest system;
 	private ServiceListener serviceListener;
 
 	@Before
@@ -24,24 +24,24 @@ public class PowerMockitoStaticMethodExample {
 		service = Mockito.mock(Service.class);
 		serviceListener = Mockito.mock(ServiceListener.class);
 
-		system = new SomeSystem();
-		//system = Mockito.spy(new SomeSystem());
+		system = new SystemUnderTest();
+		//system = Mockito.spy(new SystemUnderTest());
 		system.add(service);
 		system.setServiceListener(serviceListener);
 	}
 
 	@Test
 	public void stubStaticNonVoidMethod() {
-		// Stub static method startServiceStatic to start successfully
-		p("Call mockStatic SomeSystem.class to enable static mocking");
-		PowerMockito.mockStatic(SomeSystem.class);
+		// Stub static method startServiceStatic to startService successfully
+		p("Call mockStatic SystemUnderTest.class to enable static mocking");
+		PowerMockito.mockStatic(SystemUnderTest.class);
 		
 		p("Stub static method startServiceStaticWay to return 1");
-		PowerMockito.when(SomeSystem.startServiceStaticWay(service))
+		PowerMockito.when(SystemUnderTest.startServiceStaticWay(service))
 				.thenReturn(1);
 
 		// Run
-		p("Start the system, should start the services in turn");
+		p("Start the system, should startService the services in turn");
 		system.start();
 
 		// Verify success
@@ -50,7 +50,7 @@ public class PowerMockitoStaticMethodExample {
 
 		// Stub static method startServiceStatic to fail
 		p("Stub static method startServiceStaticWay to return 0");
-		PowerMockito.when(SomeSystem.startServiceStaticWay(service))
+		PowerMockito.when(SystemUnderTest.startServiceStaticWay(service))
 				.thenReturn(0);
 
 		// Run

@@ -21,7 +21,7 @@ import org.robolectric.shadows.ShadowLog;
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
-public class RobolectricIntentServiceTest {
+public class IntentServiceTest {
 
     static {
         ShadowLog.stream = System.out;

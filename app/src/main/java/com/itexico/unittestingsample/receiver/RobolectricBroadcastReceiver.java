@@ -15,7 +15,7 @@ public class RobolectricBroadcastReceiver extends BroadcastReceiver{
     public void onReceive(Context context, Intent intent) {
         Intent service = new Intent(context, RobolectricIntentService.class);
         service.putExtra("data", "receiver_data");
-        //start the service which needs to handle the intent
+        //startService the service which needs to handle the intent
         context.startService(service);
     }
 }

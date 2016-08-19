@@ -3,7 +3,7 @@ package com.itexico.unittestingsample.powermock;
 
 import com.itexico.unittestingsample.mocktest.Service;
 import com.itexico.unittestingsample.mocktest.ServiceListener;
-import com.itexico.unittestingsample.mocktest.SomeSystem;
+import com.itexico.unittestingsample.mocktest.SystemUnderTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 public class PowerMockitoVerifyPrivateMethodExample {
 	private Service service;
-	private SomeSystem system;
+	private SystemUnderTest system;
 	private ServiceListener serviceListener;
 
 	@Before
@@ -24,20 +24,20 @@ public class PowerMockitoVerifyPrivateMethodExample {
 		service = Mockito.mock(Service.class);
 		serviceListener = Mockito.mock(ServiceListener.class);
 
-		system = Mockito.spy(new SomeSystem());
+		system = Mockito.spy(new SystemUnderTest());
 		system.add(service);
 		system.setServiceListener(serviceListener);
 	}
 
 	@Test
 	public void verifyPrivateMethods() throws Exception {
-		p("Stub using PowerMockito. service.start() should return 1 as we want start of the service to be successful");
-		PowerMockito.when(service.start()).thenReturn(1);
+		p("Stub using PowerMockito. service.startService() should return 1 as we want startService of the service to be successful");
+		PowerMockito.when(service.startService()).thenReturn(1);
 		
 		p("Stub service name to return serviceA");
-		Mockito.when(service.getName()).thenReturn("serviceA");
+		Mockito.when(service.getServiceName()).thenReturn("serviceA");
 
-		p("Start the system, should start the services in turn");
+		p("Start the system, should startService the services in turn");
 		system.start();
 
 		p("Verify private method addEvent(service, true) is called");

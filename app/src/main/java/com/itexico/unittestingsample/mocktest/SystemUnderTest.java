@@ -3,14 +3,14 @@ package com.itexico.unittestingsample.mocktest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SomeSystem {
-    private static final String TAG = SomeSystem.class.getSimpleName();
+public class SystemUnderTest {
+    private static final String TAG = SystemUnderTest.class.getSimpleName();
     private List<Service> services = new ArrayList<Service>();
 	private ServiceListener serviceListener;
 	private List<String> events = new ArrayList<String>();
 
 	public void start() {
-        System.out.println("start() called");
+        System.out.println("startService() called");
         for (Service service : services) {
 			boolean success = startServiceStaticWay(service) > 0;
 			notifyServiceListener(serviceListener, service, success);
@@ -20,7 +20,7 @@ public class SomeSystem {
 	
 	private void addEvent(Service service, boolean success) {
         System.out.println("addEvent() called");
-		events.add(getEvent(service.getName(), success));
+		events.add(getEvent(service.getServiceName(), success));
 	}
 
 	private String getEvent(String serviceName, boolean success) {
@@ -47,7 +47,7 @@ public class SomeSystem {
 
 	public static int startServiceStaticWay(Service service) {
         System.out.println("startServiceStaticWay() called");
-		int returnCode = service.start();
+		int returnCode = service.startService();
 		return returnCode;
 	}
 

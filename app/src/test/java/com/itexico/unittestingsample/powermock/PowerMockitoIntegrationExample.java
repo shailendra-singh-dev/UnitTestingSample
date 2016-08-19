@@ -2,7 +2,7 @@ package com.itexico.unittestingsample.powermock;
 
 import com.itexico.unittestingsample.mocktest.Service;
 import com.itexico.unittestingsample.mocktest.ServiceListener;
-import com.itexico.unittestingsample.mocktest.SomeSystem;
+import com.itexico.unittestingsample.mocktest.SystemUnderTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 public class PowerMockitoIntegrationExample {
 	private Service service;
-	private SomeSystem system;
+	private SystemUnderTest system;
 	private ServiceListener serviceListener;
 
 	@Before
@@ -24,7 +24,7 @@ public class PowerMockitoIntegrationExample {
 		service = Mockito.mock(Service.class);
 		serviceListener = Mockito.mock(ServiceListener.class);
 
-		system = Mockito.spy(new SomeSystem());
+		system = Mockito.spy(new SystemUnderTest());
 		system.add(service);
 		system.setServiceListener(serviceListener);
 	}
@@ -32,11 +32,11 @@ public class PowerMockitoIntegrationExample {
 	@Test
 	public void startSystem() {
 		// Stub using Mockito and PowerMockito
-		p("Stub using PowerMockito. service.start() should return 1 as we want start of the service to be successful");
-		PowerMockito.when(service.start()).thenReturn(1);
+		p("Stub using PowerMockito. service.startService() should return 1 as we want startService of the service to be successful");
+		PowerMockito.when(service.startService()).thenReturn(1);
 
 		// Run
-		p("Start the system, should start the services in turn");
+		p("Start the system, should startService the services in turn");
 		system.start();		
 
 		// Verify using Mockito	

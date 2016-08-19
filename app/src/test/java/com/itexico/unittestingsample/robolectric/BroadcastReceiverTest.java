@@ -24,7 +24,7 @@ import java.util.List;
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
-public class RobolectricBroadcastReceiverTest {
+public class BroadcastReceiverTest {
     private static final String ACTION = "com.itexico.unittestingsample.intent.action.UNIT_TEST";
 
     static {

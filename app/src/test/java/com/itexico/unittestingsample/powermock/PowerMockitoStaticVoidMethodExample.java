@@ -2,7 +2,7 @@ package com.itexico.unittestingsample.powermock;
 
 import com.itexico.unittestingsample.mocktest.Service;
 import com.itexico.unittestingsample.mocktest.ServiceListener;
-import com.itexico.unittestingsample.mocktest.SomeSystem;
+import com.itexico.unittestingsample.mocktest.SystemUnderTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 public class PowerMockitoStaticVoidMethodExample {
 	private Service service;
-	private SomeSystem system;
+	private SystemUnderTest system;
 	private ServiceListener serviceListener;
 
 	@Before
@@ -24,30 +24,30 @@ public class PowerMockitoStaticVoidMethodExample {
 		service = Mockito.mock(Service.class);
 		serviceListener = Mockito.mock(ServiceListener.class);
 
-		system = new SomeSystem();
+		system = new SystemUnderTest();
 		system.add(service);
 		system.setServiceListener(serviceListener);
 	}
 
-	@PrepareForTest({ SomeSystem.class })
+	@PrepareForTest({ SystemUnderTest.class })
 	@Test
 	public void stubStaticVoidMethod() {		
-		p("Call mockStatic SomeSystem.class to enable static mocking");
-		PowerMockito.mockStatic(SomeSystem.class);
+		p("Call mockStatic SystemUnderTest.class to enable static mocking");
+		PowerMockito.mockStatic(SystemUnderTest.class);
 		
-		p("Stub static void method SomeSystem.notifyServiceListener to do nothing");
-		PowerMockito.doNothing().when(SomeSystem.class);
-		SomeSystem.notifyServiceListener(serviceListener, service, true);
+		p("Stub static void method SystemUnderTest.notifyServiceListener to do nothing");
+		PowerMockito.doNothing().when(SystemUnderTest.class);
+		SystemUnderTest.notifyServiceListener(serviceListener, service, true);
 		
-		p("Stub using PowerMockito. service.start() should return 1 as we want start of the service to be successful");
-		PowerMockito.when(service.start()).thenReturn(1);		
+		p("Stub using PowerMockito. service.startService() should return 1 as we want startService of the service to be successful");
+		PowerMockito.when(service.startService()).thenReturn(1);
 
 		p("Start the system");
 		system.start();
 
 		p("Verify static method startServiceStaticWay(service) is called");
 		PowerMockito.verifyStatic();
-		SomeSystem.startServiceStaticWay(service);
+		SystemUnderTest.startServiceStaticWay(service);
 
 		p("Verify serviceListener.onSuccess(service) is not called as notifyServiceListener is stubbed to do nothing");
 		Mockito.verify(serviceListener, Mockito.never()).onSuccess(service);
