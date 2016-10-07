@@ -1,5 +1,7 @@
 package com.itexico.unittestingsample.junit;
 
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.itexico.unittestingsample.EmailValidator;
 
 import org.junit.FixMethodOrder;
@@ -12,30 +14,31 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by iTexico Developer on 8/8/2016.
  */
+@SmallTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmailValidatorTest {
     @Test
-    public void emailValidator_CorrectEmailSimple_ReturnsTrue() {
+    public void correctEmailSimple() {
         assertTrue(EmailValidator.isValidEmail("name@email.com"));
     }
 
     @Test
-    public void emailValidator_CorrectEmailSubDomain_ReturnsTrue() {
+    public void correctEmailSubDomain() {
         assertTrue(EmailValidator.isValidEmail("name@email.co.uk"));
     }
 
     @Test
-    public void emailValidator_InvalidEmailNoTld_ReturnsFalse() {
+    public void invalidEmail() {
         assertFalse(EmailValidator.isValidEmail("name@email"));
     }
 
     @Test
-    public void emailValidator_InvalidEmailDoubleDot_ReturnsFalse() {
+    public void invalidEmailDoubleDot() {
         assertFalse(EmailValidator.isValidEmail("name@email..com"));
     }
 
     @Test
-    public void emailValidator_InvalidEmailNoUsername_ReturnsFalse() {
+    public void invalidEmailNoUsername() {
         assertFalse(EmailValidator.isValidEmail("@email.com"));
     }
 

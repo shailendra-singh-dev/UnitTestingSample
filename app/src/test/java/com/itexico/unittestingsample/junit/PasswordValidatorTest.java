@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -27,32 +28,37 @@ public class PasswordValidatorTest {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
-    @Parameterized.Parameter
-    public String mPassword;
-
     @Test(expected = IllegalArgumentException.class)
     public void passwordValidator_MiniumLength() {
-        boolean isPassed =PasswordValidator.isValidPassword("test");
-        if(!isPassed){
+        boolean isPassed = PasswordValidator.isValidPassword("test");
+        if (!isPassed) {
             throw new IllegalArgumentException();
         }
     }
 
-    public PasswordValidatorTest(){
+    public PasswordValidatorTest() {
     }
+
+    @Parameterized.Parameter
+    public String mPassword;
 
     @Parameterized.Parameters
     public static List<Object> data() {
-        Object[] data = new Object[]{"testPassword", "test@1234"};
+        Object[] data = new Object[]{"temp", "temp1234"};
         return Arrays.asList(data);
+    }
+
+    @Test
+    public void parameterizedParameters(){
+        assertFalse(PasswordValidator.isValidPassword(mPassword));
     }
 
     @Test
     public void throwsIllegalArgumentExceptionIfLengthIsLess() {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Minimum Length expected is 10.");
-        boolean isPassed =PasswordValidator.isValidPassword("tempPassword@1234");
-        if(!isPassed){
+        boolean isPassed = PasswordValidator.isValidPassword("tempPassword@1234");
+        if (!isPassed) {
             throw new IllegalArgumentException("Minimum Length expected is 10.");
         }
     }

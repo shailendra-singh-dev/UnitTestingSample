@@ -17,7 +17,7 @@ import org.junit.Assert;
 
 @PrepareForTest({ SystemUnderTest.class })
 @RunWith(PowerMockRunner.class)
-public class PowerMockitoStubPrivateMethodExample {
+public class StubPrivateMethodTest {
 	private Service service;
 	private SystemUnderTest system;
 	private ServiceListener serviceListener;

@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: LoginActivityTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.itexico.unittestingsample.robolectric</a> ]
+</div>
+
+<h1>Coverage Summary for Class: LoginActivityTest (com.itexico.unittestingsample.robolectric)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoginActivityTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.itexico.unittestingsample.robolectric;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.Intent;
+<i>4</i>&nbsp;import android.os.Build;
+<i>5</i>&nbsp;import android.widget.Button;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import com.itexico.unittestingsample.BuildConfig;
+<i>8</i>&nbsp;import com.itexico.unittestingsample.LoginActivity;
+<i>9</i>&nbsp;import com.itexico.unittestingsample.R;
+<i>10</i>&nbsp;import com.itexico.unittestingsample.WelcomeActivity;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import org.junit.Before;
+<i>13</i>&nbsp;import org.junit.Test;
+<i>14</i>&nbsp;import org.junit.runner.RunWith;
+<i>15</i>&nbsp;import org.robolectric.Robolectric;
+<i>16</i>&nbsp;import org.robolectric.RobolectricGradleTestRunner;
+<i>17</i>&nbsp;import org.robolectric.Shadows;
+<i>18</i>&nbsp;import org.robolectric.annotation.Config;
+<i>19</i>&nbsp;import org.robolectric.shadows.ShadowActivity;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;import static junit.framework.Assert.assertNotNull;
+<i>22</i>&nbsp;import static junit.framework.Assert.assertTrue;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;// Static imports for assertion methods
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;/**
+<i>27</i>&nbsp; * Created by iTexico Developer on 8/9/2016.
+<i>28</i>&nbsp; */
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;@SuppressWarnings(&quot;ALL&quot;)
+<i>31</i>&nbsp;@RunWith(RobolectricGradleTestRunner.class)
+<i>32</i>&nbsp;@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
+<b class="fc"><i>33</i>&nbsp;public class LoginActivityTest {</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    private LoginActivity loginActivity;
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    // @Before =&gt; JUnit 4 annotation that specifies this method should run before each test is run
+<i>38</i>&nbsp;    // Useful to do setup for objects that are needed in the test
+<i>39</i>&nbsp;    @Before
+<i>40</i>&nbsp;    public void setup() {
+<i>41</i>&nbsp;        // Convenience method to run LoginActivity through the Activity Lifecycle methods:
+<i>42</i>&nbsp;        // onCreate(...) =&gt; onStart() =&gt; onPostCreate(...) =&gt; onResume()
+<b class="fc"><i>43</i>&nbsp;        loginActivity = Robolectric.setupActivity(LoginActivity.class);</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    // @Test =&gt; JUnit 4 annotation specifying this is a test to be run
+<i>47</i>&nbsp;    @Test
+<i>48</i>&nbsp;    public void validateTextViewContent() {
+<b class="fc"><i>49</i>&nbsp;        Button saveButton = (Button) loginActivity.findViewById(R.id.saveButton);</b>
+<b class="fc"><i>50</i>&nbsp;        assertNotNull(&quot;Button could not be found&quot;, saveButton);</b>
+<b class="fc"><i>51</i>&nbsp;        assertTrue(&quot;TextView contains incorrect text&quot;,</b>
+<b class="fc"><i>52</i>&nbsp;                loginActivity.getString(R.string.save).equals(saveButton.getText().toString()));</b>
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    @Test
+<i>56</i>&nbsp;    public void secondActivityStartedOnClick() {
+<b class="fc"><i>57</i>&nbsp;        loginActivity.findViewById(R.id.saveButton).performClick();</b>
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;        // The intent we expect to be launched when a user clicks on the button
+<b class="fc"><i>60</i>&nbsp;        Intent expectedIntent = new Intent(loginActivity, WelcomeActivity.class);</b>
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;        // An Android &quot;Activity&quot; doesn&#39;t expose a way to find out about activities it launches
+<i>63</i>&nbsp;        // Robolectric&#39;s &quot;ShadowActivity&quot; keeps track of all launched activities and exposes this information
+<i>64</i>&nbsp;        // through the &quot;getNextStartedActivity&quot; method.
+<b class="fc"><i>65</i>&nbsp;        ShadowActivity shadowActivity = Shadows.shadowOf(loginActivity);</b>
+<b class="fc"><i>66</i>&nbsp;        Intent actualIntent = shadowActivity.getNextStartedActivity();</b>
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;        // Determine if two intents are the same for the purposes of intent resolution (filtering).
+<i>69</i>&nbsp;        // That is, if their action, data, type, class, and categories are the same. This does
+<i>70</i>&nbsp;        // not compare any extra data included in the intents
+<b class="fc"><i>71</i>&nbsp;        assertTrue(actualIntent.filterEquals(expectedIntent));</b>
+<b class="nc"><i>72</i>&nbsp;    }</b>
+<i>73</i>&nbsp;
+<i>74</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-08-10 10:41</div>
+</div>
+</body>
+</html>
